@@ -5,6 +5,18 @@ namespace ConsoleApp2
 {
     class Program
     {
+        static int AltDiagonaal(GameData[,] gameField)
+        {
+            int summ = 0;
+            for (int i = gameField.GetLength(0)-1; i > 0; i--)
+            {
+                for (int j = 0; j < gameField.GetLength(1); j++)
+                {
+                    summ += gameField[i, j].CellValue;
+                }
+            }
+            return summ;
+        }
         static void Main(string[] args)
         {
             GameData[,] gameField = new GameData[3, 3];
@@ -27,7 +39,7 @@ namespace ConsoleApp2
             int summHorizontal = 0;
             int summVertical = 0;
             int summDiagonalMain = 0;
-
+            int summDiagonalAlt;
 
             while (!endGame)
             {
@@ -75,20 +87,23 @@ namespace ConsoleApp2
                         summHorizontal += gameField[i, j].CellValue;
                         summVertical += gameField[j, i].CellValue;
                     }
-                    if (summHorizontal == 3 || summVertical == 3 || summDiagonalMain == 3)
+                    summDiagonalMain += gameField[i, i].CellValue;
+                    summDiagonalAlt = AltDiagonaal(gameField);
+                    if (summHorizontal == 3 || summVertical == 3 || summDiagonalMain == 3 || summDiagonalAlt == 3)
                     {
-                        Console.WriteLine("First mint");
+                        Console.WriteLine("First vinner");
                         endGame = true;
                     }
-                    if (summHorizontal == 12 || summVertical == 12 || summDiagonalMain == 12)
+                    if (summHorizontal == 12 || summVertical == 12 || summDiagonalMain == 12 || summDiagonalAlt == 12)
                     {
                         Console.WriteLine("Second vinner");
                         endGame = true;
                     }
                     summHorizontal = 0;
                     summVertical = 0;
-                    summDiagonalMain += gameField[i, i].CellValue;
+                    
                 }
+                summDiagonalMain = 0;
 
 
             }
