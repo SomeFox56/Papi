@@ -1,0 +1,91 @@
+
+,,,,,,,,,,,,,,,,ОКНо,,,,,,,,,,,,,,,,,
+
+в самом начале пишем это:.....................................................
+
+	WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent"
+        WindowStartupLocation="CenterScreen"
+
+потом пишем это:..............................................................
+
+<Border CornerRadius="20" BorderThickness="10">
+
+        <Border.BorderBrush>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="#F0EB36" Offset="0.0"/>
+                <GradientStop Color="#73C269" Offset="0.5"/>
+                <GradientStop Color="#1E91A5" Offset="1.0"/>
+            </LinearGradientBrush>
+        </Border.BorderBrush>
+
+ <Grid>
+ <Grid.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="#F0EB36" Offset="0.0"/>
+                    <GradientStop Color="#73C269" Offset="0.5"/>
+                    <GradientStop Color="#1E91A5" Offset="1.0"/>
+                </LinearGradientBrush>
+            </Grid.Background>
+  </Grid>
+</Border>
+............................................................................
+
+
+,,,,,,,,,,,,,,,,КНОпка,,,,,,,,,,,,,,,,,
+
+<Button Style="{DynamicResource scs}" Content="X" HorizontalAlignment="Left" Margin="722,0,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.314,-0.507" Height="47" Width="48" Click="Button_Click_2"
+                    
+		    Background="#9370DB" 
+                     Foreground="White"
+                     FontFamily="Arial"
+                     FontSize="15"         
+                    />
+
+.. Дальше нажимаем пкм по кнопке
+   	1. правка шаблона - копия
+	2. даем любое имя
+	3. в <Setter Property="BorderThickness" Value="0"/> ставим 0
+	4. пишем туда это <Border x:Name="border" ((((CornerRadius="20"))))Background="{TemplateBinding Background}"
+
+.................................ДобаВлениЕ НА кнопКУ картИнку...........................                                           Обязательно в Разделе Кисть, в фотографии в Stretch ставим Fill
+
+<Button Content="" HorizontalAlignment="Left" Margin="150,26,0,0" VerticalAlignment="Top" Width="57" Height="56">
+                            <Button.Background>
+                                <ImageBrush ImageSource="/sber-logo.png" Stretch="None"></ImageBrush>
+                            </Button.Background>
+
+</Button>
+
+...........................Красивый ListBox.............................................................
+
+<ListBox d:ItemsSource="{d:SampleData ItemCount=5}" Margin="66,97,65,153" RenderTransformOrigin="0.5,0.5">
+                            <ListBox.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="10"/>
+                                </Style>
+                            </ListBox.Resources>
+                            <ListBox.ItemContainerStyle>
+                                <Style TargetType="{x:Type ListBoxItem}">
+                                    <Setter Property="Background" Value="LightSteelBlue"/>
+                                    <Setter Property="Margin" Value="5"/>
+                                    <Setter Property="Padding" Value="5"/>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsSelected" Value="True">
+                                            <Setter Property="Foreground" Value="White"/>
+                                            <Setter Property="BorderThickness" Value="1"/>
+                                            <Setter Property="BorderBrush" Value="Black"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </ListBox.ItemContainerStyle>
+                            <ListBox.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform AngleY="-0.46"/>
+                                    <RotateTransform/>
+                                    <TranslateTransform Y="-0.992"/>
+                                </TransformGroup>
+                            </ListBox.RenderTransform>
+                        </ListBox>
